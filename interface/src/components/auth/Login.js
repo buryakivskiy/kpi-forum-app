@@ -59,7 +59,7 @@ const Login = () => {
             )}
           </div>
           <FormGroup>
-            <Label>Елктронна пошта</Label>
+            <Label>Електронна пошта</Label>
             <Input type="email" name="email" placeholder="Введіть вашу пошту" onChange={handleChange} />
             { currentState.loginError && currentState.loginError.Required_email ? (
               <small className="color-red">{currentState.loginError.Required_email}</small>
@@ -114,7 +114,7 @@ const Login = () => {
             </form>
             <div className="mt-2" style={{display: "flex", justifyContent: "space-between"}}>
               <div>
-                <small><Link to="/signup">Бажаєте створити акаунт?</Link></small>
+                <small><Link to="/signup" style={{color: "#007bff"}}>Бажаєте створити акаунт?</Link></small>
               </div>
             </div>
            

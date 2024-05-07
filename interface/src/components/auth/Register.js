@@ -104,12 +104,12 @@ const Register = () => {
                 block
                 disabled={ user.username === "" || user.email === "" || user.password === ""  }
               >
-                Зареєструвати
+                Зареєструватись
             </Button>
             )}
             </form>
             <div className="mt-2">
-              <small>Уже маєте акаунт? <Link to="/login">Увійти</Link></small>
+              <small>Уже маєте акаунт? <Link to="/login" style={{color: "#007bff"}}>Увійти</Link></small>
             </div>
             </CardBody>
           </Card>
