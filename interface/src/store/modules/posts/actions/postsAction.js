@@ -58,14 +58,26 @@ export const createPost = (createPost) => {
     dispatch({ type: BEFORE_STATE_POST })
 
     try {
-      const res = await axios.post(`${API_ROUTE}/posts`, createPost)
+      const res = await axios.post(`${API_ROUTE}/forum`, createPost)
       dispatch({ 
         type: CREATE_POST_SUCCESS,  
         payload: res.data.response
       })
       history.push('/');
     } catch(err) {
-      dispatch({ type: CREATE_POST_ERROR, payload: err.response.data.error })
+      const errors = err.response.data.errors;
+
+      const payload = {
+        titleRequired: false,
+        descriptionRequired: false,
+      };
+
+      errors.forEach(element => {
+        if (element.field === 'title') payload.titleRequired = true;
+        if (element.field === 'description') payload.descriptionRequired = true;
+      });
+
+      dispatch({ type: CREATE_POST_ERROR, payload: payload })
     }
   }
 }

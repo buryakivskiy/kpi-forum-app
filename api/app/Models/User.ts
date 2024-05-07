@@ -4,7 +4,10 @@ import {
   column,
   beforeSave,
   BaseModel,
+  hasMany,
+  HasMany,
 } from '@ioc:Adonis/Lucid/Orm'
+import Forum from './Forum'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -36,6 +39,9 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: 'updatedAt'})
   public updatedAt: DateTime
+
+  @hasMany(() => Forum)
+  public forums: HasMany<typeof Forum>;
 
   @beforeSave()
   public static async hashPassword (user: User) {

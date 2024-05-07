@@ -15,7 +15,7 @@ const CreatePost = () => {
 
   const [post, setPost] = useState({
     title:'',
-    content: '',
+    description: '',
   });
   const dispatch = useDispatch()
 
@@ -31,7 +31,7 @@ const CreatePost = () => {
     e.preventDefault()
     addPost({
       title: post.title,
-      content: post.content,
+      description: post.description,
     });
   }
 
@@ -45,28 +45,23 @@ const CreatePost = () => {
         </div>
         <div className="post-style container App">
         <Card className="card-style">
-          <CardHeader>Create Post</CardHeader>
+          <CardHeader>Створити тему</CardHeader>
           <CardBody>
           <form onSubmit={submitUser}>
           <FormGroup>
-            <Label>Title</Label>
-            <Input type="text" name="title" placeholder="Enter title"  onChange={handleChange}/>
-            { currentState.PostsState.postsError && currentState.PostsState.postsError.Required_title ? (
-              <small className="color-red">{currentState.PostsState.postsError.Required_title}</small>
-              ) : (
-                ""
-              )}
-              { currentState.PostsState.postsError && currentState.PostsState.postsError.Taken_title ? (
-              <small className="color-red">{ currentState.PostsState.postsError.Taken_title }</small>
+            <Label>Заголовок</Label>
+            <Input type="text" name="title" placeholder="Введіть заголовок"  onChange={handleChange}/>
+            { currentState.PostsState.postsError && currentState.PostsState.postsError.titleRequired ? (
+              <small className="color-red"> Це поле обовʼязкове</small>
               ) : (
                 ""
               )}
           </FormGroup>
           <FormGroup>
-            <Label>Content</Label>
-            <Input type="textarea" cols="30" rows="6" name="content" id="" placeholder="Enter a short description" onChange={handleChange} />
-            { currentState.PostsState.postsError && currentState.PostsState.postsError.Required_content ? (
-              <small className="color-red">{currentState.PostsState.postsError.Required_content}</small>
+            <Label>Зміст</Label>
+            <Input type="textarea" cols="30" rows="6" name="description" id="" placeholder="Введіть коротки опис вашого питання/проблеми" onChange={handleChange} />
+            { currentState.PostsState.postsError && currentState.PostsState.postsError.descriptionRequired ? (
+              <small className="color-red">Це поле обовʼязкове</small>
               ) : (
                 ""
               )}
@@ -79,7 +74,7 @@ const CreatePost = () => {
                 block
                 disabled
               >
-                Creating...
+                Створення...
             </Button>
             ) : (
               <Button
@@ -87,7 +82,7 @@ const CreatePost = () => {
                 type="submit"
                 block
               >
-              Create Post
+              Створити тему
             </Button>
             )}
             </form>
