@@ -1,5 +1,6 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema } from '@ioc:Adonis/Core/Validator'
+import CustomError from "App/Exceptions/CustomError";
 import Forum from "App/Models/Forum";
 
 export default class ForumController {
@@ -12,7 +13,33 @@ export default class ForumController {
 
   public async show({}: HttpContextContract) {}
 
-  public async update({}: HttpContextContract) {}
+  public async update({ auth, request, response, params }: HttpContextContract) {
+    const updateForumSchema = schema.create({
+      title: schema.string.optional(),
+      description: schema.string.optional()
+    });
+
+    const payload = await request.validate({ schema: updateForumSchema });
+    const user = await auth.authenticate();
+    const forum = await Forum.findOrFail(params.id);
+
+    if (forum.userId != user.id) {
+      response.status(400);
+      return new CustomError('Access denied', 400);
+    }
+
+    if (payload.title) {
+      forum.title = payload.title;
+    }
+
+    if (payload.description) {
+      forum.description = payload.description;
+    }
+
+    await forum.save();
+
+    return forum;
+  }
 
   public async store({ auth, request }: HttpContextContract) {
     const createForumSchema = schema.create({

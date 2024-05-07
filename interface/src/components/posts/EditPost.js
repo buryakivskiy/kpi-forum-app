@@ -15,8 +15,6 @@ const EditPost = ({ post, className }) => {
 
   const currentState = useSelector((state) => state);
 
-  const authID = currentState.Auth.currentUser.id
-
   const theUpdate = details => dispatch(updatePost(details, updateSuccess))
 
   const updateSuccess = () => {
@@ -45,8 +43,7 @@ const EditPost = ({ post, className }) => {
     theUpdate({
       id: post.id,
       title: postUpdate.title,
-      content: postUpdate.content,
-      author_id: authID
+      description: postUpdate.description,
     })
   }
 
@@ -55,10 +52,10 @@ const EditPost = ({ post, className }) => {
       <FaPencilAlt className="style-edit " onClick={toggle}/>
 
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Edit Post</ModalHeader>
+        <ModalHeader toggle={toggle}>Редагувати тему</ModalHeader>
         <ModalBody>
           <FormGroup>
-            <label>Title hello</label>
+            <label>Заголовок</label>
             <input className="form-control" type="text" name="title"  defaultValue={postUpdate.title}  onChange={handleChange}/>
             { currentState.PostsState.postsError && currentState.PostsState.postsError.Required_title ? (
               <small className="color-red">{currentState.PostsState.postsError.Required_title}</small>
@@ -67,8 +64,8 @@ const EditPost = ({ post, className }) => {
               )}
           </FormGroup>
           <FormGroup>
-            <label>Content</label>
-            <textarea className="form-control" name="content" style={{ width: "100%", height: "150px" }} defaultValue={postUpdate.content} onChange={handleChange}></textarea>
+            <label>Зміст</label>
+            <textarea className="form-control" name="description" style={{ width: "100%", height: "150px" }} defaultValue={postUpdate.description} onChange={handleChange}></textarea>
             { currentState.PostsState.postsError && currentState.PostsState.postsError.Required_content ? (
               <small className="color-red">{currentState.PostsState.postsError.Required_content}</small>
               ) : (
@@ -81,17 +78,17 @@ const EditPost = ({ post, className }) => {
               <button className="btn btn-primary"
                 disabled
               >
-                Updating...
+                Редагування...
             </button>
             ) : (
               <button className="btn btn-primary"
                 onClick={submitPost}
                 type="submit"
               >
-              Update
+              Застосувати зміни
             </button>
             )}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
+          <Button color="secondary" onClick={toggle}>Скасувати</Button>
         </ModalFooter>
       </Modal>
     </span>
