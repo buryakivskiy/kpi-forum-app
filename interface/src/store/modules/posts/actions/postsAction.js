@@ -24,8 +24,8 @@ export const fetchPost = id => {
     dispatch({ type: BEFORE_STATE_POST })
 
     try {
-      const res  = await axios.get(`${API_ROUTE}/posts/${id}`)
-      dispatch({ type: GET_POST_SUCCESS, payload: res.data.response })
+      const res  = await axios.get(`${API_ROUTE}/forum/${id}`)
+      dispatch({ type: GET_POST_SUCCESS, payload: res.data })
     } catch(err){
       dispatch({ type: GET_POST_ERROR, payload: err.response.data.error })
       history.push('/'); //incase the user manually enter the param that dont exist
@@ -57,9 +57,9 @@ export const createPost = (createPost) => {
       const res = await axios.post(`${API_ROUTE}/forum`, createPost)
       dispatch({ 
         type: CREATE_POST_SUCCESS,  
-        payload: res.data.response
+        payload: res.data
       })
-      history.push('/')
+      window.location.href = "/"
     } catch(err) {
       const errors = err.response.data.errors;
 

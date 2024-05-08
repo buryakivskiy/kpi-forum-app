@@ -30,14 +30,8 @@ const PostDetails = (props) => {
 
   const authID = currentState.Auth.currentUser ? currentState.Auth.currentUser.id : ""
 
-//Get the avatar of the author of the post
   let imagePreview = null;
-  let avatarPathPost = post.author ? post.author.avatar_path : null
-  if(avatarPathPost){
-    imagePreview = (<img className="img_style_post" src={avatarPathPost} alt="profile"/>);
-  } else {
-    imagePreview = (<img className="img_style_post" src={Default} alt="profile"/>);
-  }
+  imagePreview = (<img className="img_style_post" src={Default} alt="profile"/>);
 
 
   useEffect(() => {
@@ -68,7 +62,7 @@ const PostDetails = (props) => {
                 <span className="mr-2">
                   {imagePreview}
                 </span>
-                <span href="" style={{fontWeight: 'bold'}}>{post.author ? post.author.username : ""}</span>
+                <span href="" style={{fontWeight: 'bold'}}>{post.user ? post.user.username : ""}</span>
               </span>
               <span style={{float: 'right'}}>
                 <Moment fromNow>
@@ -77,11 +71,11 @@ const PostDetails = (props) => {
               </span>
               </CardTitle>
               <CardTitle>{post.title}</CardTitle>
-              <CardText>{post.content}</CardText>
+              <CardText>{post.description}</CardText>
               <div className="style-fav">
                 <Likes postID={Number(postID)} />
-                <Comments postID={postID} />
-                { authID === post.author_id ? (
+                <Comments postID={Number(postID)} />
+                { authID === post.user?.id ? (
                 <div className="ml-auto">
                   <span style={{marginRight: "20px"}}>
                     <EditPost post={post} />

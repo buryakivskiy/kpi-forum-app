@@ -72,8 +72,9 @@ export const updateUser = (updateUser, clearInput) => {
     dispatch({ type: BEFORE_USER_STATE })
     const { currentUser } = getState().Auth
     try {
-      const res = await axios.put(`${API_ROUTE}/users/${currentUser.id}`, updateUser);
-      let updatedUser = res.data.response
+      console.log(updateUser)
+      const res = await axios.put(`${API_ROUTE}/user/${currentUser.id}`, updateUser);
+      let updatedUser = res.data
 
       dispatch({ type: UPDATE_USER_SUCCESS, payload: updatedUser })
       window.localStorage.setItem('user_data', JSON.stringify(updatedUser)); //update the localstorages
@@ -89,7 +90,7 @@ export const deleteUser = (id)  => {
   return async dispatch => {
     dispatch({ type: BEFORE_STATE })
     try {
-      const res = await axios.delete(`${API_ROUTE}/users/${id}`);
+      const res = await axios.delete(`${API_ROUTE}/user/${id}`);
       let deleteMessage = res.data.response
       dispatch({ type: DELETE_USER_SUCCESS, payload: deleteMessage })
       window.localStorage.clear(); //update the localstorage

@@ -11,7 +11,20 @@ export default class ForumController {
     return forums;
   }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ response, params }: HttpContextContract) {
+    try {
+      const forum =  await Forum.find(params.id);
+
+      if (forum) {
+        await forum.preload('user');
+        return forum;
+      }
+
+    } catch (error) {
+      response.status(400);
+      return new CustomError(error.message, 400);
+    }
+  }
 
   public async update({ auth, request, response, params }: HttpContextContract) {
     const updateForumSchema = schema.create({

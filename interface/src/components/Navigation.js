@@ -51,9 +51,6 @@ const Navigation = () => {
   const SignedInLinks = (
               <React.Fragment>
                   <NavItem className="mt-2" style={{marginRight: "15px" }}>
-                    <p style={{ color: "white" }}>Привіт, {currentUser.firstName}</p>
-                  </NavItem>
-                  <NavItem className="mt-2" style={{marginRight: "15px" }}>
                     <NavLink to="/createpost" style={{ color: "white" }}>Створити тему</NavLink>
                   </NavItem>
                   <NavItem className="mt-2" style={{marginRight: "15px" }}>
