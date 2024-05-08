@@ -11,6 +11,19 @@ export default class ForumController {
     return forums;
   }
 
+  public async indexByUser({ params, auth, response }: HttpContextContract) {
+    const user = await auth.authenticate();
+    
+    if (params.userId != user.id) {
+      response.status(400);
+      return new CustomError('Access denied', 400);
+    }
+
+    const forums = await Forum.query().where('user_id', params.userId).preload('user');
+
+    return forums;
+  }
+
   public async show({ response, params }: HttpContextContract) {
     try {
       const forum =  await Forum.find(params.id);

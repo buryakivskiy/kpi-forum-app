@@ -51,10 +51,10 @@ const AuthPosts = () => {
         ) : ( 
           <div className="text-center mt-4">
             <div style={{fontSize: "100px"}}><FaFilter /></div>
-            <p className="mt-2">It seems you have not created any posts yet.</p>
-            <p>Click the button the button below to create one</p>
+            <p className="mt-2">Схоже, у вас ще немає створених тем.</p>
+            <p>Натисніть кнопку щоб створити тему</p>
             <div className="mt-4">
-              <Link to="/createpost" className="btn btn-primary">Create Post</Link>
+              <Link to="/createpost" className="btn btn-primary">Створити тему</Link>
             </div>
           </div>
         )}

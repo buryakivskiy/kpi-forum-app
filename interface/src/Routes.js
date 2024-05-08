@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import CreatePost from './components/posts/CreatePost'
 import PostDetails from './components/posts/PostDetails'
 import Profile from './components/users/Profile';
+import AuthPosts from './components/posts/AuthPosts';
 import { history } from './history'
 
 
@@ -20,6 +21,7 @@ const Routes  = () => {
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Register} />
             <Route path='/createpost' component={CreatePost} />
+            <Route path='/authposts' component={AuthPosts} />
             <Route path='/posts/:id' component={PostDetails} />
             <Route path='/profile/:id' component={Profile} />
           </Switch>

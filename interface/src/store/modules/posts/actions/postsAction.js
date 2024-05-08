@@ -40,8 +40,8 @@ export const fetchAuthPosts = id => {
     dispatch({ type: BEFORE_STATE_POST })
 
     try {
-      const res  = await axios.get(`${API_ROUTE}/user_posts/${id}`)
-      dispatch({ type: FETCH_AUTH_POSTS, payload: res.data.response })
+      const res  = await axios.get(`${API_ROUTE}/forum/auth/${id}`)
+      dispatch({ type: FETCH_AUTH_POSTS, payload: res.data })
     } catch(err){
       dispatch({ type: FETCH_AUTH_POSTS_ERROR, payload: err.response.data.error })
     }

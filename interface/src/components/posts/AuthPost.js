@@ -17,12 +17,7 @@ const AuthPost = ({ post }) => {
   const currentState = useSelector(state => state)
   const authID = currentState.Auth.currentUser.id
 
-  let $imagePreview = null;
-  if(post.author.avatar_path){
-    $imagePreview = (<img className="img_style_post" src={post.author.avatar_path} alt="no one"/>);
-  } else {
-    $imagePreview = (<img className="img_style_post" src={Default} alt="no one 2"/>);
-  }
+  const $imagePreview = (<img className="img_style_post" src={Default} alt="no one 2"/>);
   
   return (
     <Card className="style-card-main">
@@ -32,14 +27,14 @@ const AuthPost = ({ post }) => {
           <span className="mr-2">
             {$imagePreview}
           </span>
-          <span href="" style={{fontWeight: 'bold'}}>{post.author.username}</span>
+          <span href="" style={{fontWeight: 'bold'}}>{post.user.username}</span>
         </span>
         <span style={{float: 'right'}}>
           <Moment fromNow>{post.created_at}</Moment>
         </span>
         </CardTitle>
         <CardTitle>{post.title}</CardTitle>
-        <CardText>{post.content}</CardText>
+        <CardText>{post.description}</CardText>
         <div className="style-fav">
         { authID ? (
             <>
@@ -47,7 +42,7 @@ const AuthPost = ({ post }) => {
               <Comments postID={post.id} />
             </>
             ) : ""}
-          { authID === post.author_id ? (
+          { authID === post.user.id ? (
             <div className="ml-auto">
               <span style={{marginRight: "20px"}}>
                 <EditPost post={post} />
