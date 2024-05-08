@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
-import { Label, Input, FormGroup, Button, CardBody, Col, Row, Form, CustomInput, Modal, ModalHeader, ModalFooter, ModalBody } from "reactstrap";
-import { updateUserAvatar, updateUser, deleteUser } from '../../store/modules/auth/actions/authAction';
+import { Label, Input, FormGroup, Button, CardBody, Col, Row, Form, Modal, ModalHeader, ModalFooter, ModalBody } from "reactstrap";
+import { updateUser, deleteUser } from '../../store/modules/auth/actions/authAction';
 import Default from '../../Assets/default.png'
 import  './Profile.css'
 import Message from '../utils/Message';
