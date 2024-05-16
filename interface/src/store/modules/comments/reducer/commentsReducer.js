@@ -59,7 +59,8 @@ export const commentsState = (state = initState, action) => {
       return { 
         ...state, 
         commentItems: state.commentItems.map(commentItem => 
-          Number(commentItem.postID) === payload.comment.post_id ? 
+          // eslint-disable-next-line
+          Number(commentItem.postID) == payload.comment.id ? 
           {...commentItem, comments: commentItem.comments.map(comment => comment.id === payload.comment.id  ? 
           {...comment, body: payload.comment.body } : comment  ) } : commentItem
         ),

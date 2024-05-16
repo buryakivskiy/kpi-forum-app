@@ -1,0 +1,14 @@
+.other_posts {
+    width: 70%;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.other-posts-title {
+    font-size: 24px;
+    text-align: center;
+    margin: 20px auto;
+    color: #333;
+}

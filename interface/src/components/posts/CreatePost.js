@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Posts.css";
 import Navigation from '../Navigation'
 import { createPost } from '../../store/modules/posts/actions/postsAction';
+import { fetchCategories } from "../../store/modules/categories/actions/categoriesAction";
 
 
 
@@ -16,10 +17,19 @@ const CreatePost = () => {
   const [post, setPost] = useState({
     title:'',
     description: '',
+    categoryId: 4,
   });
   const dispatch = useDispatch()
 
+  const categories = currentState.CategoriesState.categoryItems
+
   const addPost = (postDetails) => dispatch(createPost(postDetails))
+  const getCategories = () => dispatch(fetchCategories())
+
+  useEffect(() => {
+    getCategories();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleChange = e => {
     setPost({
@@ -32,6 +42,7 @@ const CreatePost = () => {
     addPost({
       title: post.title,
       description: post.description,
+      categoryId: Number(post.categoryId),
     });
   }
 
@@ -65,7 +76,16 @@ const CreatePost = () => {
               ) : (
                 ""
               )}
-            </FormGroup>
+          </FormGroup>
+          <FormGroup>
+                <Label>Категорія</Label>
+                <Input type="select" name="categoryId" onChange={handleChange}>
+                  <option value={4}>Виберіть категорію</option>
+                  {categories.map(category => (
+                    <option key={category.id} value={category.id}>{category.name}</option>
+                  ))}
+                </Input>
+          </FormGroup>
 
             { currentState.PostsState.isLoading ? (
               <Button

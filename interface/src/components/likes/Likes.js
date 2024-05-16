@@ -29,7 +29,8 @@ const Likes = ({ postID }) => {
 
         // eslint-disable-next-line array-callback-return
         eachItem.likes.map(eachLike => {
-          if(eachLike.user_id === authID){
+          // eslint-disable-next-line
+          if(eachLike.userId == authID){
             authLiked = true
             likeID = eachLike.id
           } 

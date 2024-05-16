@@ -1,13 +1,29 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema } from '@ioc:Adonis/Core/Validator'
 import CustomError from "App/Exceptions/CustomError";
+import Category from "App/Models/Category";
 import Forum from "App/Models/Forum";
 
 export default class ForumController {
   
 
-  public async index({}: HttpContextContract) {
-    const forums = await Forum.query().preload("user");
+  public async index({ request }: HttpContextContract) {
+    const searchTerm = request.input('search', '').toLowerCase();
+    
+    const forums = await Forum.query().preload('user');
+    
+    if (searchTerm) {
+      return forums.filter(forum => forum.title.toLowerCase().includes(searchTerm) )
+    }
+
+    return forums
+  }
+
+  public async indexByCategory({ params }: HttpContextContract) {
+    const category =  await Category.findOrFail(params.categoryId);
+
+    const forums = await Forum.query().where('category_id', category.id).preload('user');
+
     return forums;
   }
 
@@ -70,16 +86,19 @@ export default class ForumController {
   public async store({ auth, request }: HttpContextContract) {
     const createForumSchema = schema.create({
       title: schema.string(),
-      description: schema.string()
+      description: schema.string(),
+      categoryId: schema.number()
     });
 
     const payload = await request.validate({ schema: createForumSchema });
 
     const user = await auth.authenticate();
+    const category = await Category.findOrFail(payload.categoryId);
     const forum = new Forum();
 
     forum.title = payload.title;
     forum.description = payload.description;
+    forum.categoryId = category.id;
 
     await user.related('forums').save(forum);
     

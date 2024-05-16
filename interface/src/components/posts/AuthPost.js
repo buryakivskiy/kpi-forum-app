@@ -33,7 +33,7 @@ const AuthPost = ({ post }) => {
           <Moment fromNow>{post.created_at}</Moment>
         </span>
         </CardTitle>
-        <CardTitle>{post.title}</CardTitle>
+        <CardTitle style={{fontWeight: 'bold'}}>{post.title}</CardTitle>
         <CardText>{post.description}</CardText>
         <div className="style-fav">
         { authID ? (

@@ -8,6 +8,8 @@ import CreatePost from './components/posts/CreatePost'
 import PostDetails from './components/posts/PostDetails'
 import Profile from './components/users/Profile';
 import AuthPosts from './components/posts/AuthPosts';
+import PostsCategory from './components/posts/PostsCategory'
+import SearchPosts from './components/posts/SearchPosts'
 import { history } from './history'
 
 
@@ -23,6 +25,8 @@ const Routes  = () => {
             <Route path='/createpost' component={CreatePost} />
             <Route path='/authposts' component={AuthPosts} />
             <Route path='/posts/:id' component={PostDetails} />
+            <Route path='/category/posts/:categoryId' component={PostsCategory} />
+            <Route path='/search' component={SearchPosts} />
             <Route path='/profile/:id' component={Profile} />
           </Switch>
         </div>

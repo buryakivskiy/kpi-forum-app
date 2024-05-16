@@ -6,12 +6,12 @@ export const fetchLikes = id => {
 
   return async dispatch => {
     try {
-      const res = await axios.get(`${API_ROUTE}/likes/${id}`)
+      const res = await axios.get(`${API_ROUTE}/like/${id}`)
       dispatch({ 
         type: GET_LIKES_SUCCESS, 
         payload: {
           postID: id,
-          likes: res.data.response,
+          likes: res.data,
         }
       })
     } catch(err) {
@@ -23,12 +23,13 @@ export const fetchLikes = id => {
 export const createLike = id => {
   return async (dispatch) => {
     try {
-      const res  = await axios.post(`${API_ROUTE}/likes/${id}`)
+      const res  = await axios.post(`${API_ROUTE}/like`, { forumId: id })
+      console.log(res.data)
       dispatch({ 
         type: LIKE_CREATE_SUCCESS, 
         payload: {
           postID: id,
-          oneLike: res.data.response,
+          oneLike: res.data,
         }
       })
     } catch(err){
@@ -41,7 +42,7 @@ export const createLike = id => {
 export const deleteLike = details => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${API_ROUTE}/likes/${details.id}`)
+      await axios.delete(`${API_ROUTE}/like/${details.id}`)
       dispatch({ 
         type: LIKE_DELETE_SUCCESS, 
         payload: {

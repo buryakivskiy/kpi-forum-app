@@ -44,7 +44,8 @@ const PostDetails = (props) => {
   if(postComments){
     // eslint-disable-next-line array-callback-return
     postComments.commentItems.map(eachItem => {
-      if(eachItem.postID === postID){
+      // eslint-disable-next-line
+      if(eachItem.postID == postID){
         singlePostComments = eachItem.comments  
       } 
     }) 
@@ -70,7 +71,7 @@ const PostDetails = (props) => {
                 </Moment>
               </span>
               </CardTitle>
-              <CardTitle>{post.title}</CardTitle>
+              <CardTitle style={{fontWeight: 'bold'}}>{post.title}</CardTitle>
               <CardText>{post.description}</CardText>
               <div className="style-fav">
                 <Likes postID={Number(postID)} />

@@ -14,3 +14,10 @@ footer {
   position: relative;
   min-height: 100vh;
 }
+
+#pinned-posts {
+  position: relative;
+  background-color: #007bff7e;
+  width: fit-content;
+  margin: auto;
+}

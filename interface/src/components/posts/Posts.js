@@ -9,20 +9,15 @@ import Post from './Post'
 
 const Posts = () => {
 
-  console.log(1)
   const postsSelector = useSelector((state) => state.PostsState);
   const dispatch = useDispatch();
 
   const getPosts = () => dispatch(fetchPosts());
-  console.log(2)
 
   useEffect(() => {
-    console.log('init')
     getPosts();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  console.log(3)
 
   return (
     <div className="container">{

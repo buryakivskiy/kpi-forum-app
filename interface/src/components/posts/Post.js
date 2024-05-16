@@ -34,7 +34,7 @@ const Post = ({ post }) => {
           <Moment fromNow>{post.createdAt}</Moment>
         </span>
         </CardTitle>
-        <CardTitle>{post.title}</CardTitle>
+        <CardTitle style={{fontWeight: 'bold'}}>{post.title}</CardTitle>
         <CardText>{post.description}</CardText>
         <div className="style-fav">
             <>

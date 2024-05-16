@@ -1,23 +1,21 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class Forums extends BaseSchema {
-  protected tableName = 'forums'
+export default class Comments extends BaseSchema {
+  protected tableName = 'comments'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id');
-      table.string('title', 255).notNullable();
-      table.text('description').notNullable();
-      table.boolean('is_open').defaultTo(true);
-      table
-        .integer('category_id')
-        .unsigned()
-        .references('categories.id')
-        .onDelete('CASCADE') 
+      table.text('body').notNullable();
       table
         .integer('user_id')
         .unsigned()
         .references('users.id')
+        .onDelete('CASCADE')
+      table
+        .integer('forum_id')
+        .unsigned()
+        .references('forums.id')
         .onDelete('CASCADE') 
       table.timestamps(true);
     });

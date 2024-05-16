@@ -1,0 +1,48 @@
+.categories {
+    width: 70%;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .categories-title {
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .categories-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .categories-item {
+    background-color: #00000010;
+    border-radius: 5px;
+    padding: 10px;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    height: 80px;
+  }
+
+  .categories-item-title {
+    font-size: 20px;
+  }
+  
+  .categories-item-description {
+    font-size: 16px;
+  }
+
+  .categories-item:hover {
+    background-color: #007bff;
+  }
+  
+  .categories-item:hover .categories-item-title {
+    color: #f9f9f9;
+  }
+
+  .categories-item:hover .categories-item-description {
+    color: #f9f9f9;
+  }

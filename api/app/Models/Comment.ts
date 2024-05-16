@@ -6,26 +6,20 @@ import {
   BelongsTo,
   belongsTo,
 } from "@ioc:Adonis/Lucid/Orm";
-import Category from "./Category";
+import Forum from "./Forum";
 
-export default class Forum extends BaseModel {
+export default class Comment extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
 
   @column()
-  public title: string;
-
-  @column()
-  public description: string;
-
-  @column({ serializeAs: 'isOpen' })
-  public isOpen: boolean;
+  public body: string;
 
   @column({ serializeAs: 'userId' })
   public userId: number;
 
-  @column({ serializeAs: 'categoryId' })
-  public categoryId: number;
+  @column({ serializeAs: 'forumId' })
+  public forumId: number;
 
   @column.dateTime({ autoCreate: true, serializeAs: 'createdAt' })
   public createdAt: DateTime;
@@ -37,6 +31,6 @@ export default class Forum extends BaseModel {
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>;
 
-  @belongsTo(() => Category)
-  public category: BelongsTo<typeof Category>;
+  @belongsTo(() => Forum)
+  public forum: BelongsTo<typeof Forum>;
 }

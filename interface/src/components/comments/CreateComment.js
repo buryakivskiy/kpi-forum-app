@@ -32,7 +32,7 @@ const CreateComment = ({ postID, className }) => {
   const submitComment = (e) => {
     e.preventDefault()
     addComment({
-      post_id: Number(postID),
+      forumId: Number(postID),
       body
     })
   }

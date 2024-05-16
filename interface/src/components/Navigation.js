@@ -33,7 +33,6 @@ const Navigation = () => {
   const logoutUser  = () => dispatch(SignOut());
 
 
-
   let imagePreview = null;
   if(currentUser && currentUser.avatar_path){
     imagePreview = (<img className="img_style_nav" src={currentUser.avatar_path} alt="profile 1"/>);
@@ -91,14 +90,14 @@ const Navigation = () => {
   return (
     <div className="mb-3">
       <Navbar color="primary" light expand="md"> 
-        <NavbarBrand className="mx-auto" href="/">
+        <NavbarBrand className="mr-auto" href="/">
           <img alt={'logo'} src={Logo} width={40} height={40}/>
           <span style={{ color: "white", fontWeight: "bold", margin: 10}}>IPZE-FORUM</span>
         </NavbarBrand>
         
         <NavbarToggler onClick={() => setIsOpen(!isOpen) } /> 
 
-        <Collapse isOpen={isOpen} navbar> 
+        <Collapse isOpen={isOpen} navbar> 
           <Nav className="ml-auto" navbar>
             { isAuthenticated ? SignedInLinks: SignedOutLinks }
           </Nav>

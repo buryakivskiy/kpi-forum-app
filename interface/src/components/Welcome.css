@@ -1,0 +1,20 @@
+.welcome {
+    width: 70%;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #007bff;
+}
+
+.welcome-title {
+    font-size: 24px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.welcome-description {
+    font-size: 16px;
+    color: #ffffff;
+}

@@ -8,6 +8,8 @@ import {
   HasMany,
 } from '@ioc:Adonis/Lucid/Orm'
 import Forum from './Forum'
+import Comment from './Comment'
+import Like from './Like'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -40,8 +42,15 @@ export default class User extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: 'updatedAt'})
   public updatedAt: DateTime
 
+  // Relationship
   @hasMany(() => Forum)
   public forums: HasMany<typeof Forum>;
+
+  @hasMany(() => Comment)
+  public comments: HasMany<typeof Comment>;
+
+  @hasMany(() => Like)
+  public likes: HasMany<typeof Like>;
 
   @beforeSave()
   public static async hashPassword (user: User) {

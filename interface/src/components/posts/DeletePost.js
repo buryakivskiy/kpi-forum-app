@@ -32,23 +32,23 @@ const DeletePost = ({ postID, className }) => {
       <FaRegTrashAlt className="style-delete" onClick={toggle}/>
 
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle} className="text-center">Delete Post?</ModalHeader>
+        <ModalHeader toggle={toggle} className="text-center">Видалити тему?</ModalHeader>
         <ModalFooter>
         { currentState.CommentsState.isLoading ? (
               <button className="btn btn-primary"
                 disabled
               >
-                Deleting...
+                Видалення...
             </button>
             ) : (
               <button className="btn btn-primary"
                 onClick={submitDelete}
                 type="submit"
               >
-              Delete
+              Видалити
             </button>
             )}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
+          <Button color="secondary" onClick={toggle}>Скасувати</Button>
         </ModalFooter>
       </Modal>
     </span>
